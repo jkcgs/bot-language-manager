@@ -1,0 +1,23 @@
+{
+  "name": "bot-lang-manager",
+  "version": "1.0.0",
+  "description": "Bot language manager",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "jkcgs",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^2.0.0"
+  },
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.18",
+    "angular": "^1.7.2",
+    "angular-animate": "^1.7.2",
+    "angular-aria": "^1.7.2",
+    "angular-material": "^1.1.10",
+    "angular-messages": "^1.7.2",
+    "js-yaml": "^3.12.0"
+  }
+}

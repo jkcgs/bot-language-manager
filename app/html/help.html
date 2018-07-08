@@ -1,0 +1,44 @@
+<md-dialog aria-label="Help and Information">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Help and Information</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.close()">
+                    <md-icon md-svg-src="img/close.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <h2>Bot Language Manager</h2>
+                <h4>Version: {{ vm.info.version }}</h4>
+
+                <h3>Help</h3>
+                <p>Help will be available here soon.</p>
+
+                <h3>Information</h3>
+                <p>
+                    This program is intended to help the bot author to create and manage
+                    the language strings in an easy way. The bot was initially named "AlexisBot",
+                    but as its name is changing, we're not naming this program after this name.
+                </p>
+
+                <h3>License</h3>
+                <p>
+                    This program is licensed under the MIT public license.<br>
+                    Copyright 2018 (c) Jonathan Gutiérrez.
+                </p>
+            </div>
+        </md-dialog-content>
+        
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="vm.close()">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+
