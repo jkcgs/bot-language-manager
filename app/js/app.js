@@ -12,6 +12,8 @@
             url: '/',
             component: 'main'
         })
+
+        $urlRouterProvider.otherwise('/')
     })
 
     var mainController = function($mdDialog) {
