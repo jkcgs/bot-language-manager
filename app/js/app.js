@@ -39,12 +39,7 @@
             }
 
             if(mgr.saveModuleStrings(vm.module, vm.language, vm.strings)) {
-                let dg = $mdDialog.alert()
-                    .title('Sucess')
-                    .textContent('Content saved successfully')
-                    .ok('Ok')
-                
-                $mdDialog.show(dg)
+                vm.updateStrings()
             }
         }
 
