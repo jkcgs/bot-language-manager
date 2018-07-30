@@ -208,8 +208,7 @@ class LangManager {
             strings[stringName] = ''
 
             // Store the content
-            let content = yaml.dump(strings)
-            this.saveModuleStrings(mod, lang, content)
+            this.saveModuleStrings(mod, lang, strings)
         })
 
         return true

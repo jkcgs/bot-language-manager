@@ -86,6 +86,7 @@
             $mdDialog.show(dg).then(function(result) {
                 if (mgr.addModule(result)) {
                     vm.modules = mgr.getModules()
+                    vm.module = result;
                     vm.updateStrings()
                 }
             }, function(){});
