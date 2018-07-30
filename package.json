@@ -3,10 +3,18 @@
   "version": "1.0.1",
   "description": "Bot language manager",
   "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jkcgs/bot-language-manager.git"
+  },
   "scripts": {
     "start": "electron ."
   },
-  "author": "jkcgs",
+  "author": {
+    "name": "Jonathan Gutiérrez",
+    "email": "contacto@jgutierrez.cl",
+    "url": "https://github.com/jkcgs"
+  },
   "license": "MIT",
   "devDependencies": {
     "electron": "^2.0.0"
