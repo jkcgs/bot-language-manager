@@ -3,7 +3,7 @@ const path = require('path')
 const {dialog} = require('electron')
 
 // Validation files
-const requiredFiles = ['bot', 'run.py', 'config.yml']
+const requiredFiles = ['bot', 'run.py', 'config.yml.example']
 const requiredBotFiles = ['bot.py', 'command.py', 'manager.py', 'events', 'libs']
 
 module.exports = {

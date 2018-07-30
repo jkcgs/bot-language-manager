@@ -153,11 +153,18 @@ class LangManager {
         // Load the language file if it exists. If not, use an empty object
         let doc = fs.existsSync(langPath) ? yaml.safeLoad(fs.readFileSync(langPath, 'utf8')) : {}
         let names = this.getModuleStringNames(mod)
-        let values = {}
+        let values = []
+        let keys = []
 
         // Fill all of the strings. There could be strings that are not filled in some languages.
         for(let k of names) {
-            values[k] = (!!doc && doc.hasOwnProperty(k)) ? doc[k] + '' : ''
+            if (keys.includes(k)) continue
+
+            values.push({
+                'name': k,
+                'value': (!!doc && doc.hasOwnProperty(k)) ? doc[k] + '' : ''
+            })
+            keys.push(k)
         }
 
         return values
@@ -180,7 +187,8 @@ class LangManager {
         }
 
         // Generate YAML content to store it to the file
-        let content = yaml.dump(strings)
+        let content = strings.reduce((p, c) => { p[c.name] = c.value; return p }, {})
+        content = yaml.dump(content)
         fs.writeFileSync(this.getModuleLanguagePath(mod, language), content, 'utf8')
         return true
     }
