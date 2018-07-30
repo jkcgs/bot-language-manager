@@ -15,19 +15,19 @@
             <md-tooltip>Save</md-tooltip>
             <md-icon md-svg-icon="img/save.svg"></md-icon>
         </md-button>
-        <md-button class="md-icon-button" aria-label="Add string" ng-click="vm.addString()">
+        <md-button class="md-icon-button" aria-label="Add string" ng-click="vm.addString($event)">
             <md-tooltip>Add string</md-tooltip>
             <md-icon md-svg-icon="img/add_string.svg"></md-icon>
         </md-button>
-        <md-button class="md-icon-button" aria-label="Add module" ng-click="vm.createModule()">
+        <md-button class="md-icon-button" aria-label="Add module" ng-click="vm.createModule($event)">
             <md-tooltip>Add module folder</md-tooltip>
             <md-icon md-svg-icon="img/add_module.svg"></md-icon>
         </md-button>
-        <md-button class="md-icon-button" aria-label="Add language" ng-click="vm.createLang()">
+        <md-button class="md-icon-button" aria-label="Add language" ng-click="vm.createLang($event)">
             <md-tooltip>Add language</md-tooltip>
             <md-icon md-svg-icon="img/add_language.svg"></md-icon>
         </md-button>
-        <md-button class="md-icon-button" aria-label="Add language" ng-click="vm.showHelp()">
+        <md-button class="md-icon-button" aria-label="Add language" ng-click="vm.showHelp($event)">
             <md-tooltip>Help</md-tooltip>
             <md-icon md-svg-icon="img/help.svg"></md-icon>
         </md-button>
@@ -47,7 +47,7 @@
                 <input type="text" ng-model="string.value">
             </md-input-container>
             <md-input-container>
-                <md-button class="md-icon-button md-accent md-mini">
+                <md-button class="md-icon-button md-accent md-mini" ng-click="vm.deleteString($event, string.name)">
                     <md-tooltip md-direction="left">Delete string</md-tooltip>
                     <md-icon md-svg-icon="img/delete_string.svg"></md-icon>
                 </md-button>

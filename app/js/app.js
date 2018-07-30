@@ -124,7 +124,23 @@
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true
-            });
+            })
+        }
+
+        vm.deleteString = function(ev, strName) {
+            var confirm = $mdDialog.confirm()
+                .title('Confirm action')
+                .textContent('¿Do you really want to delete this string from all the languages?')
+                .ariaLabel('Confirm delete of string')
+                .targetEvent(ev)
+                .ok('OK')
+                .cancel('No, thank you')
+
+            $mdDialog.show(confirm).then(function() {
+                if (mgr.deleteString(vm.module, strName)) {
+                    vm.updateStrings()
+                }
+            }, function(){})
         }
 
         vm.updateStrings()
@@ -143,4 +159,10 @@
             $mdDialog.hide()
         }
     }
+
+    window.addEventListener('keypress', function(e) {
+        if (e.ctrlKey && e.key == 'r') {
+            window.location.reload()
+        }
+    })
 }())

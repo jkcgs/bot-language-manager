@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, globalShortcut} = require('electron')
 const functions = require('./app/js/botPath')
 let mainWindow
 
@@ -7,8 +7,6 @@ function createWindow() {
     mainWindow.setMenu(null)
     mainWindow.setMenuBarVisibility(false)
     mainWindow.loadFile('app/index.html')
-    
-    //mainWindow.webContents.openDevTools()
     
     mainWindow.on('closed', function () {
         mainWindow = null
@@ -21,6 +19,9 @@ app.on('ready', function() {
         app.quit()
     } else {
         global.botPath = botPath
+        globalShortcut.register('CommandOrControl+Shift+I', () => {
+            mainWindow.webContents.openDevTools()
+        })
         createWindow()
     }
 })

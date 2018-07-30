@@ -187,7 +187,7 @@ class LangManager {
         }
 
         // Generate YAML content to store it to the file
-        let content = strings.reduce((p, c) => { p[c.name] = c.value; return p }, {})
+        let content = strings.length == 0 ? [] : strings.reduce((p, c) => { p[c.name] = c.value; return p }, {})
         content = yaml.dump(content)
         fs.writeFileSync(this.getModuleLanguagePath(mod, language), content, 'utf8')
         return true
@@ -213,7 +213,35 @@ class LangManager {
         this.getLanguages().forEach(lang => {
             // Load strings for a language and add the string to it
             let strings = this.getModuleStrings(mod, lang)
-            strings[stringName] = ''
+            strings.push({'name': stringName, 'value': ''})
+
+            // Store the content
+            this.saveModuleStrings(mod, lang, strings)
+        })
+
+        return true
+    }
+
+    /**
+     * Removes a string from all the available languages
+     * @param {string} mod The module name
+     * @param {string} stringName The string name
+     */
+    deleteString(mod, stringName) {
+        if (mod === null) {
+            return false
+        }
+
+        // Ignore if the string doesn't exists
+        if (!this.getModuleStringNames(mod).includes(stringName)) {
+            return false
+        }
+
+        this.getLanguages().forEach(lang => {
+            // Load strings for a language and remove the string from it
+            let strings = this.getModuleStrings(mod, lang)
+            strings = strings.filter(x => x.name != stringName)
+            console.log(strings)
 
             // Store the content
             this.saveModuleStrings(mod, lang, strings)
