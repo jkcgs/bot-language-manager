@@ -187,10 +187,23 @@ class LangManager {
         }
 
         // Generate YAML content to store it to the file
-        let content = strings.length == 0 ? [] : strings.reduce((p, c) => { p[c.name] = c.value; return p }, {})
+        let content = strings.length === 0 ? [] : strings.reduce((p, c) => { p[c.name] = c.value; return p }, {})
         content = yaml.dump(content)
         fs.writeFileSync(this.getModuleLanguagePath(mod, language), content, 'utf8')
         return true
+    }
+
+    /**
+     * Stores language content for all languages in a key (lang) value (object of strings) format.
+     * 
+     * @param {string} mod The module name
+     * @param {object} strings A key-value object (language-string list) for every language, where the object is
+     * in the following format: { lang1: [ { name: "string name", value: "string value" }, ... ], lang2: [{...}, ...] }
+     */
+    saveModuleStringsAll(mod, strings) {
+        for (let lang of Object.keys(strings)) {
+            this.saveModuleStrings(mod, lang, strings[lang])
+        }
     }
 
     /**

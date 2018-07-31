@@ -25,12 +25,14 @@
         vm.language = !!vm.languages ? vm.languages[0] : null
 
         vm.updateStrings = function() {
-            if (!vm.module || !vm.language) {
-                vm.module = null
+            if (vm.module === null) {
                 return
             }
 
-            vm.strings = mgr.getModuleStrings(vm.module, vm.language)
+            vm.strings = vm.languages.reduce(function(p, lang) {
+                p[lang] = mgr.getModuleStrings(vm.module, lang)
+                return p
+            }, {})
         }
 
         vm.save = function() {
@@ -38,9 +40,8 @@
                 return
             }
 
-            if(mgr.saveModuleStrings(vm.module, vm.language, vm.strings)) {
-                vm.updateStrings()
-            }
+            mgr.saveModuleStringsAll(vm.module, vm.strings)
+            vm.updateStrings()
         }
 
         vm.addString = function(ev) {
@@ -105,7 +106,6 @@
                 .cancel('Cancel')
 
             $mdDialog.show(dg).then(function(result) {
-                console.log(result)
                 mgr.addLanguage(result, vm.language)
                 vm.languages = mgr.getLanguages()
             }, function(){})
@@ -156,7 +156,7 @@
     }
 
     window.addEventListener('keypress', function(e) {
-        if (e.ctrlKey && e.key == 'r') {
+        if (e.ctrlKey && e.which == 'r') {
             window.location.reload()
         }
     })
