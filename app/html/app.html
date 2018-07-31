@@ -35,8 +35,19 @@
 </md-toolbar>
 
 <md-content flex layout-padding>
-    <br>
     <div ng-if="vm.module">
+        <div style="text-align: right; margin-bottom: 1rem">
+            <md-input-container>
+                <md-select placeholder="Copy from" ng-model="vm.copyFromLang" style="margin-top: none; float: right">
+                    <md-option ng-value="lang" ng-repeat="lang in vm.languages" ng-if="lang != vm.language">{{ lang }}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container>
+                <md-button class="md-accent md-mini" ng-click="vm.copyStrings()">
+                    Copy
+                </md-button>
+            </md-input-container>
+        </div>
         <div layout-gt-xs="row" ng-repeat="string in vm.strings[vm.language]">
             <md-input-container class="md-block" flex-gt-xs="30">
                 <label>Name</label>

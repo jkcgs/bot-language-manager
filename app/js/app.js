@@ -23,6 +23,7 @@
         vm.strings = null
         vm.languages = mgr.getLanguages()
         vm.language = !!vm.languages ? vm.languages[0] : null
+        vm.copyFromLang = ''
 
         vm.updateStrings = function() {
             if (vm.module === null) {
@@ -136,6 +137,12 @@
                     vm.updateStrings()
                 }
             }, function(){})
+        }
+
+        vm.copyStrings = function() {
+            for (let string of Object.keys(vm.strings[vm.copyFromLang])) {
+                vm.strings[vm.language][string] = vm.strings[vm.copyFromLang][string]
+            }
         }
 
         vm.updateStrings()
