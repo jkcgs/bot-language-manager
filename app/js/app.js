@@ -20,7 +20,7 @@
         var vm = this
         vm.modules = mgr.getModules()
         vm.module = !!vm.modules ? vm.modules[0] : null
-        vm.strings = null
+        vm.strings = {}
         vm.languages = mgr.getLanguages()
         vm.language = !!vm.languages ? vm.languages[0] : null
         vm.copyFromLang = ''
@@ -62,7 +62,12 @@
             
             $mdDialog.show(dg).then(function(result) {
                 if (mgr.addString(vm.module, result)) {
-                    vm.updateStrings()
+                    for (var lang of vm.languages) {
+                        vm.strings[lang].push({
+                            name: result,
+                            value: ''
+                        })
+                    }
                 }
             }, function(){});
         }
