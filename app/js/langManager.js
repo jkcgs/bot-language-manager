@@ -254,7 +254,6 @@ class LangManager {
             // Load strings for a language and remove the string from it
             let strings = this.getModuleStrings(mod, lang)
             strings = strings.filter(x => x.name != stringName)
-            console.log(strings)
 
             // Store the content
             this.saveModuleStrings(mod, lang, strings)
