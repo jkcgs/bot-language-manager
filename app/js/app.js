@@ -146,7 +146,9 @@
 
         vm.copyStrings = function() {
             for (let string of Object.keys(vm.strings[vm.copyFromLang])) {
-                vm.strings[vm.language][string] = vm.strings[vm.copyFromLang][string]
+                // Avoid passing variable by reference
+                var itm = vm.strings[vm.copyFromLang][string];
+                vm.strings[vm.language][string] = Object.assign({}, itm);
             }
         }
 
