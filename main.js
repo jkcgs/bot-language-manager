@@ -14,16 +14,21 @@ function createWindow() {
 }
 
 app.on('ready', function() {
-    let botPath = functions.getBotPath()
+    let botPath = process.argv[process.argv.length - 1].replace(/"/g, '')
+    if (!functions.validatePath(botPath)) {
+        botPath = functions.getBotPath()
+    }
+
     if (botPath === null) {
         app.quit()
-    } else {
-        global.botPath = botPath
-        globalShortcut.register('CommandOrControl+Shift+I', () => {
-            mainWindow.webContents.openDevTools()
-        })
-        createWindow()
+        return
     }
+
+    global.botPath = botPath
+    globalShortcut.register('CommandOrControl+Shift+I', () => {
+        mainWindow.webContents.openDevTools()
+    })
+    createWindow()
 })
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {

@@ -22,6 +22,11 @@ module.exports = {
     validatePath: function(thePath) {
         let validationCount = 0
 
+        // Check if the path exists
+        if (!fs.existsSync(thePath)) {
+            return false
+        }
+
         // Get folder files
         fs.readdirSync(thePath).forEach(file => {
             // If there's a "bot" filename
